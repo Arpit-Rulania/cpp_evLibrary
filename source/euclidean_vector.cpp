@@ -40,4 +40,5 @@ namespace comp6771 {
 	int euclidean_vector::dimensions() const {
 		return static_cast<int>(dimension_);
 	}
+	//lalala
 }
