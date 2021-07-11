@@ -21,9 +21,15 @@ namespace comp6771 {
 		euclidean_vector(int i, double j);
 		euclidean_vector(std::vector<double>::const_iterator begin, std::vector<double>::const_iterator end);
 		euclidean_vector(std::initializer_list<double> i);
-		// Member Functions
+		euclidean_vector(euclidean_vector const& ev);
+		euclidean_vector(euclidean_vector && ev);
+		// Operations:
+		double& operator[](int i) noexcept;
+        double operator[](int i) const noexcept;
+		// Member Functions:
 		double at(int i) const;
 		int dimensions() const;
+		void setAt(size_t i, double doub) const;
 
 	private:
 		// ass2 spec requires we use double[]
