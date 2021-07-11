@@ -2,13 +2,13 @@
 
 #include <catch2/catch.hpp>
 #include <iostream>
-#include <vector>
 
-TEST_CASE("constructor test 4") {
-    std::vector<double> v{10.0, 20.0, 30.0};
-	auto const a1 = comp6771::euclidean_vector(v.begin(), v.end());
-	CHECK(a1.at(0) == 10.0);
-	CHECK(a1.at(1) == 20.0);
-	CHECK(a1.at(2) == 30.0);
-	CHECK(a1.dimensions() == 3);
+TEST_CASE("constructor test 5") {
+	auto const a1 = comp6771::euclidean_vector{1.0, 2.0, 3.0, 8.0, 22.7};
+	CHECK(a1.at(0) == 1.0);
+	CHECK(a1.at(1) == 2.0);
+	CHECK(a1.at(2) == 3.0);
+	CHECK(a1.at(3) == 8.0);
+	CHECK(a1.at(4) == 22.7);
+	CHECK(a1.dimensions() == 5);
 }

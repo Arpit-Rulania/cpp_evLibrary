@@ -32,6 +32,12 @@ namespace comp6771 {
         std::copy(begin, end, magnitude_.get());
 	}
 
+	euclidean_vector::euclidean_vector(std::initializer_list<double> i) {
+		dimension_ = static_cast<size_t>(i.size());
+        magnitude_ = std::make_unique<double[]>(dimension_);
+        std::copy(i.begin(), i.begin() + dimension_, magnitude_.get());
+	}
+
 	// Member Functions:
 	double euclidean_vector::at(int i) const {
 		return magnitude_[static_cast<size_t>(i)];
@@ -40,5 +46,4 @@ namespace comp6771 {
 	int euclidean_vector::dimensions() const {
 		return static_cast<int>(dimension_);
 	}
-	//lalala
 }
