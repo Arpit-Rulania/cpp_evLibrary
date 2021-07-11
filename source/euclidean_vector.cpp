@@ -5,6 +5,7 @@
 #include  <algorithm>
 #include <vector>
 #include <utility>
+#include <functional>
 
 namespace comp6771 {
 	// Constructors
@@ -51,12 +52,27 @@ namespace comp6771 {
 	}
 
 	// Operations
+	euclidean_vector& euclidean_vector::operator=(euclidean_vector const& ev) {
+		euclidean_vector copy = ev;
+		std::swap(copy, *this);
+		return *this;
+	}
+
 	double& euclidean_vector::operator[](int i) noexcept {
 		return magnitude_[static_cast<size_t>(i)];
 	}
 
 	double euclidean_vector::operator[](int i) const noexcept {
 		return magnitude_[static_cast<size_t>(i)];
+	}
+
+	euclidean_vector euclidean_vector::operator+() {
+		return *this;
+	}
+
+	euclidean_vector euclidean_vector::operator-() {
+		auto ptr = magnitude_.get();
+		return std::transform (magnitude_, magnitude_+dimension_, magnitude_, std::negate<double>());
 	}
 
 	// Member Functions:
@@ -66,9 +82,5 @@ namespace comp6771 {
 
 	int euclidean_vector::dimensions() const {
 		return static_cast<int>(dimension_);
-	}
-
-	void euclidean_vector::setAt(size_t i, double doub) const {
-		magnitude_[i] = doub;
 	}
 }

@@ -24,12 +24,15 @@ namespace comp6771 {
 		euclidean_vector(euclidean_vector const& ev);
 		euclidean_vector(euclidean_vector && ev);
 		// Operations:
+		euclidean_vector& operator=(euclidean_vector const& ev);
 		double& operator[](int i) noexcept;
         double operator[](int i) const noexcept;
+        euclidean_vector operator+();
+        euclidean_vector operator-();
+
 		// Member Functions:
 		double at(int i) const;
 		int dimensions() const;
-		void setAt(size_t i, double doub) const;
 
 	private:
 		// ass2 spec requires we use double[]

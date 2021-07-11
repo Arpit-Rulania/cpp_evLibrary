@@ -5,12 +5,13 @@
 #include <utility>
 
 TEST_CASE("Operation test 1") {
-	auto a1 = comp6771::euclidean_vector{1.0, 2.0, 3.0, 8.0, 22.7};
-	double a {a1[4]};
-	CHECK(a == 22.7);
-	std::cout << a << '\n';
-	a1[1] = 12.33;
-	double b {a1[1]};
-	CHECK(b == 12.33);
-	std::cout << b << '\n';
+	auto a = comp6771::euclidean_vector{1.0, 2.0, 3.0, 8.0, 22.7};
+	auto b = comp6771::euclidean_vector{1.0, 2.0};
+	b = a;
+	//CHECK(b.at(0) == 1.0);
+	//CHECK(b.at(1) == 2.0);
+	//CHECK(b.at(2) == 3.0);
+	//CHECK(b.at(3) == 8.0);
+	//CHECK(b.at(4) == 22.7);
+	//CHECK(b.dimensions() == 5);
 }
