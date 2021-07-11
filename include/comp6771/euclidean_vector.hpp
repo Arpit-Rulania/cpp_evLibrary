@@ -23,6 +23,7 @@ namespace comp6771 {
 		euclidean_vector(std::initializer_list<double> i);
 		// Member Functions
 		double at(int i) const;
+		int dimensions() const;
 
 	private:
 		// ass2 spec requires we use double[]

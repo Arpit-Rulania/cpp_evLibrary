@@ -36,4 +36,8 @@ namespace comp6771 {
 	double euclidean_vector::at(int i) const {
 		return magnitude_[static_cast<size_t>(i)];
 	}
+
+	int euclidean_vector::dimensions() const {
+		return static_cast<int>(dimension_);
+	}
 }
