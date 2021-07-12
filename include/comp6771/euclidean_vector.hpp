@@ -21,14 +21,17 @@ namespace comp6771 {
 		euclidean_vector(int i, double j);
 		euclidean_vector(std::vector<double>::const_iterator begin, std::vector<double>::const_iterator end);
 		euclidean_vector(std::initializer_list<double> i);
-		euclidean_vector(euclidean_vector const& ev);
-		euclidean_vector(euclidean_vector && ev);
+		euclidean_vector(euclidean_vector const& vecc);
+		euclidean_vector(euclidean_vector && vecc);
 		// Operations:
-		euclidean_vector& operator=(euclidean_vector const& ev);
+		euclidean_vector& operator=(euclidean_vector const& vecc);
 		double& operator[](int i) noexcept;
         double operator[](int i) const noexcept;
         euclidean_vector operator+();
         euclidean_vector operator-();
+        euclidean_vector& operator+=(euclidean_vector const& vecc);
+        euclidean_vector& operator-=(euclidean_vector const& vecc);
+        euclidean_vector& operator*=(double d);
 
 		// Member Functions:
 		double at(int i) const;

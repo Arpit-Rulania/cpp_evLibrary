@@ -7,6 +7,7 @@
 #include <utility>
 #include <functional>
 #include <span>
+#include <sstream>
 
 namespace comp6771 {
 	// Constructors
@@ -41,20 +42,20 @@ namespace comp6771 {
         std::copy(i.begin(), i.begin() + dimension_, magnitude_.get());
 	}
 
-	euclidean_vector::euclidean_vector(euclidean_vector const& ev) {
-		dimension_ = static_cast<size_t>(ev.dimensions());
+	euclidean_vector::euclidean_vector(euclidean_vector const& vecc) {
+		dimension_ = static_cast<size_t>(vecc.dimensions());
 	    magnitude_ = std::make_unique<double[]>(dimension_);
-	    std::copy(ev.magnitude_.get(), ev.magnitude_.get() + dimension_, magnitude_.get());
+	    std::copy(vecc.magnitude_.get(), vecc.magnitude_.get() + dimension_, magnitude_.get());
 	}
 
-	euclidean_vector::euclidean_vector(euclidean_vector && ev) {
-		dimension_ = std::exchange(ev.dimension_, 0u);
-		magnitude_ = std::exchange(ev.magnitude_, nullptr);
+	euclidean_vector::euclidean_vector(euclidean_vector && vecc) {
+		dimension_ = std::exchange(vecc.dimension_, 0u);
+		magnitude_ = std::exchange(vecc.magnitude_, nullptr);
 	}
 
 	// Operations
-	euclidean_vector& euclidean_vector::operator=(euclidean_vector const& ev) {
-		euclidean_vector copy = ev;
+	euclidean_vector& euclidean_vector::operator=(euclidean_vector const& vecc) {
+		euclidean_vector copy = vecc;
 		std::swap(copy, *this);
 		return *this;
 	}
@@ -68,7 +69,8 @@ namespace comp6771 {
 	}
 
 	euclidean_vector euclidean_vector::operator+() {
-		return *this;
+		auto copy = *this;
+		return copy;
 	}
 
 	euclidean_vector euclidean_vector::operator-() {
@@ -78,10 +80,39 @@ namespace comp6771 {
 																		});
 		*/
 		std::transform(magnitude_.get(), magnitude_.get() + dimension_, magnitude_.get(), std::negate<double>());
-		return *this;
+		auto copy = *this;
+		return copy;
 	}
 
+	euclidean_vector& euclidean_vector::operator+=(euclidean_vector const& vecc) {
+		if (dimension_ != static_cast<size_t>(vecc.dimensions())) {
+	        std::stringstream msg;
+	        msg << "Dimensions of LHS(" << dimension_ << ") and RHS(" << vecc.dimensions() << ") do not match";
+	        throw euclidean_vector_error(msg.str());
+	    }
+	    std::transform(magnitude_.get(), magnitude_.get() + dimension_, vecc.magnitude_.get(), magnitude_.get(), std::plus<double>());
+	    return *this;
+	}
 
+	euclidean_vector& euclidean_vector::operator-=(euclidean_vector const& vecc) {
+		if (dimension_ != static_cast<size_t>(vecc.dimensions())) {
+	        std::stringstream msg;
+	        msg << "Dimensions of LHS(" << dimension_ << ") and RHS(" << vecc.dimensions() << ") do not match";
+	        throw euclidean_vector_error(msg.str());
+	    }
+	    std::transform(magnitude_.get(), magnitude_.get() + dimension_, vecc.magnitude_.get(), magnitude_.get(), std::minus<double>());
+	    return *this;
+	}
+
+	euclidean_vector& euclidean_vector::operator*=(double d) {
+		std::for_each(magnitude_.get(), magnitude_.get() + dimension_, [&d](double& val){
+																			val = val*(d);
+																		});/*
+		std::transform(magnitude_.get(), magnitude_.get() + dimension_, magnitude_.get(), [&d](double& val){
+																								val = val*(d);
+																							});*/
+		return *this;
+	}
 
 	// Member Functions:
 	double euclidean_vector::at(int i) const {
