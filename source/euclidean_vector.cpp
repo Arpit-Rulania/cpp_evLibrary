@@ -6,6 +6,7 @@
 #include <vector>
 #include <utility>
 #include <functional>
+#include <span>
 
 namespace comp6771 {
 	// Constructors
@@ -71,9 +72,16 @@ namespace comp6771 {
 	}
 
 	euclidean_vector euclidean_vector::operator-() {
-		auto ptr = magnitude_.get();
-		return std::transform (magnitude_, magnitude_+dimension_, magnitude_, std::negate<double>());
+		/*
+		std::for_each(magnitude_.get(), magnitude_.get() + dimension_, [](double& val){
+																			val = val*(-1);
+																		});
+		*/
+		std::transform(magnitude_.get(), magnitude_.get() + dimension_, magnitude_.get(), std::negate<double>());
+		return *this;
 	}
+
+
 
 	// Member Functions:
 	double euclidean_vector::at(int i) const {
