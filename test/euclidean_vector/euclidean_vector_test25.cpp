@@ -14,4 +14,6 @@ TEST_CASE("friend test 1") {
 	CHECK(b.at(3) == Approx(6.66666667));
 	CHECK(b.at(4) == Approx(-18.9166667));
 	CHECK_THROWS_AS(a / 0, comp6771::euclidean_vector_error);
+	std::cout << a << '\n';
+	std::cout << b << '\n';
 }

@@ -24,6 +24,7 @@ namespace comp6771 {
 		euclidean_vector(std::initializer_list<double> i) noexcept;
 		euclidean_vector(euclidean_vector const& vecc) noexcept;
 		euclidean_vector(euclidean_vector && vecc) noexcept;
+
 		// Operations:
 		euclidean_vector& operator=(euclidean_vector const& vecc) noexcept;
 		euclidean_vector& operator=(euclidean_vector&& vecc) noexcept;
@@ -51,6 +52,7 @@ namespace comp6771 {
 		friend euclidean_vector operator*(euclidean_vector const& a, double d) noexcept;
 		friend euclidean_vector operator*(double d, euclidean_vector const& a) noexcept;
 		friend euclidean_vector operator/(euclidean_vector const& a, double d);
+		friend std::ostream& operator<<(std::ostream& ostr, euclidean_vector const& a) noexcept;
 
 	private:
 		std::unique_ptr<double[]> magnitude_;

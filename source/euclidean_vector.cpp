@@ -215,4 +215,16 @@ namespace comp6771 {
 					   b.magnitude_.get(), [d](double& val){ return val/(d);});
 		return b;
 	}
+
+	std::ostream& operator<<(std::ostream& ostr, euclidean_vector const& a) noexcept {
+		ostr << "[";
+        if (a.dimensions() > 0) {
+            for (int i = 0; i <= a.dimensions() - 1; ++i) {
+                ostr << a[i];
+                if (i < a.dimensions() - 1) ostr << " ";
+            }
+	    }
+	    ostr << "]";
+	    return ostr;
+	}
 }
