@@ -12,44 +12,44 @@
 
 namespace comp6771 {
 	// Constructors
-	euclidean_vector::euclidean_vector() {
+	euclidean_vector::euclidean_vector() noexcept{
 		dimension_ = 1;
 		magnitude_ = std::make_unique<double[]>(dimension_);
 		std::fill(magnitude_.get(), magnitude_.get()+dimension_, 0.0);
 	}
 
-	euclidean_vector::euclidean_vector(int i) {
+	euclidean_vector::euclidean_vector(int i) noexcept{
 		dimension_ = static_cast<size_t>(i);
 		magnitude_ = std::make_unique<double[]>(dimension_);
 		std::fill(magnitude_.get(), magnitude_.get()+dimension_, 0.0);
 	}
 
-	euclidean_vector::euclidean_vector(int i, double j) {
+	euclidean_vector::euclidean_vector(int i, double j) noexcept{
 		dimension_ = static_cast<size_t>(i);
 		magnitude_ = std::make_unique<double[]>(dimension_);
 		std::fill(magnitude_.get(), magnitude_.get()+dimension_, j);
 	}
 
 	euclidean_vector::euclidean_vector(std::vector<double>::const_iterator begin,
-                                       std::vector<double>::const_iterator end) {
+                                       std::vector<double>::const_iterator end) noexcept{
 		dimension_ = static_cast<size_t>(end - begin);
         magnitude_ = std::make_unique<double[]>(dimension_);
         std::copy(begin, end, magnitude_.get());
 	}
 
-	euclidean_vector::euclidean_vector(std::initializer_list<double> i) {
+	euclidean_vector::euclidean_vector(std::initializer_list<double> i) noexcept{
 		dimension_ = static_cast<size_t>(i.size());
         magnitude_ = std::make_unique<double[]>(dimension_);
         std::copy(i.begin(), i.begin() + dimension_, magnitude_.get());
 	}
 
-	euclidean_vector::euclidean_vector(euclidean_vector const& vecc) {
+	euclidean_vector::euclidean_vector(euclidean_vector const& vecc) noexcept{
 		dimension_ = static_cast<size_t>(vecc.dimensions());
 	    magnitude_ = std::make_unique<double[]>(dimension_);
 	    std::copy(vecc.magnitude_.get(), vecc.magnitude_.get() + dimension_, magnitude_.get());
 	}
 
-	euclidean_vector::euclidean_vector(euclidean_vector && vecc) {
+	euclidean_vector::euclidean_vector(euclidean_vector && vecc) noexcept{
 		dimension_ = std::exchange(vecc.dimension_, 0u);
 		magnitude_ = std::exchange(vecc.magnitude_, nullptr);
 	}
@@ -69,12 +69,12 @@ namespace comp6771 {
 		return magnitude_[static_cast<size_t>(i)];
 	}
 
-	euclidean_vector euclidean_vector::operator+() {
+	euclidean_vector euclidean_vector::operator+() noexcept {
 		auto copy = *this;
 		return copy;
 	}
 
-	euclidean_vector euclidean_vector::operator-() {
+	euclidean_vector euclidean_vector::operator-() noexcept {
 		/*
 		std::for_each(magnitude_.get(), magnitude_.get() + dimension_, [](double& val){
 																			val = val*(-1);
@@ -105,7 +105,7 @@ namespace comp6771 {
 	    return *this;
 	}
 
-	euclidean_vector& euclidean_vector::operator*=(double d) {
+	euclidean_vector& euclidean_vector::operator*=(double d) noexcept {
 		std::for_each(magnitude_.get(), magnitude_.get() + dimension_, [d](double& val){
 																			val *= d;
 																		});

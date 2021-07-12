@@ -17,22 +17,22 @@ namespace comp6771 {
 	class euclidean_vector {
 	public:
 		// Constructors:
-		euclidean_vector();
-		explicit euclidean_vector(int i);
-		euclidean_vector(int i, double j);
-		euclidean_vector(std::vector<double>::const_iterator begin, std::vector<double>::const_iterator end);
-		euclidean_vector(std::initializer_list<double> i);
-		euclidean_vector(euclidean_vector const& vecc);
-		euclidean_vector(euclidean_vector && vecc);
+		euclidean_vector() noexcept;
+		explicit euclidean_vector(int i) noexcept;
+		euclidean_vector(int i, double j) noexcept;
+		euclidean_vector(std::vector<double>::const_iterator begin, std::vector<double>::const_iterator end) noexcept;
+		euclidean_vector(std::initializer_list<double> i) noexcept;
+		euclidean_vector(euclidean_vector const& vecc) noexcept;
+		euclidean_vector(euclidean_vector && vecc) noexcept;
 		// Operations:
 		euclidean_vector& operator=(euclidean_vector const& vecc);
 		double& operator[](int i) noexcept;
         double operator[](int i) const noexcept;
-        euclidean_vector operator+();
-        euclidean_vector operator-();
+        euclidean_vector operator+() noexcept;
+        euclidean_vector operator-() noexcept;
         euclidean_vector& operator+=(euclidean_vector const& vecc);
         euclidean_vector& operator-=(euclidean_vector const& vecc);
-        euclidean_vector& operator*=(double d);
+        euclidean_vector& operator*=(double d) noexcept;
         euclidean_vector& operator/=(double d);
         explicit operator std::vector<double>() noexcept;
         explicit operator std::list<double>() noexcept;

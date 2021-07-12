@@ -15,5 +15,5 @@ TEST_CASE("Operation test 5") {
 	CHECK(a.at(3) == Approx(0));
 	CHECK(a.at(4) == Approx(20.0));
 	auto const c = comp6771::euclidean_vector{-1.2, 41.0, 19.0, -3.0};
-	a +=c;
+	CHECK_THROWS_AS(a += c, comp6771::euclidean_vector_error);
 }
