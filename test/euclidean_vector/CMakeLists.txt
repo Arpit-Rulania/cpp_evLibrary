@@ -87,3 +87,21 @@ cxx_test(
    FILENAME "euclidean_vector_test15.cpp"
    LINK euclidean_vector
 )
+
+cxx_test(
+   TARGET euclidean_vector_test16
+   FILENAME "euclidean_vector_test16.cpp"
+   LINK euclidean_vector
+)
+
+cxx_test(
+   TARGET euclidean_vector_test17
+   FILENAME "euclidean_vector_test17.cpp"
+   LINK euclidean_vector
+)
+
+cxx_test(
+   TARGET euclidean_vector_test18
+   FILENAME "euclidean_vector_test18.cpp"
+   LINK euclidean_vector
+)

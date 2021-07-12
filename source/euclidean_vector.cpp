@@ -114,6 +114,14 @@ namespace comp6771 {
 		return *this;
 	}
 
+	euclidean_vector& euclidean_vector::operator/=(double d) {
+		if (d == 0) throw euclidean_vector_error("Invalid vector division by 0");
+		std::for_each(magnitude_.get(), magnitude_.get() + dimension_, [d](double& val){
+																			val /= d;
+																		});
+		return *this;
+	}
+
 	// Member Functions:
 	double euclidean_vector::at(int i) const {
 		return magnitude_[static_cast<size_t>(i)];
