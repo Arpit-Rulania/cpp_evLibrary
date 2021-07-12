@@ -105,11 +105,11 @@ namespace comp6771 {
 	}
 
 	euclidean_vector& euclidean_vector::operator*=(double d) {
-		std::for_each(magnitude_.get(), magnitude_.get() + dimension_, [&d](double& val){
-																			val = val*(d);
-																		});/*
-		std::transform(magnitude_.get(), magnitude_.get() + dimension_, magnitude_.get(), [&d](double& val){
-																								val = val*(d);
+		std::for_each(magnitude_.get(), magnitude_.get() + dimension_, [d](double& val){
+																			val *= d;
+																		});
+		/*std::transform(magnitude_.get(), magnitude_.get() + dimension_, magnitude_.get(), [d](double& val){
+																								return val*(d);
 																							});*/
 		return *this;
 	}

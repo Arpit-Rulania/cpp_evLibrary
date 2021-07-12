@@ -13,8 +13,8 @@ TEST_CASE("Operation test 1") {
 	std::cout << a.at(3) << '\n';
 	std::cout << a.at(4) << '\n';
 	CHECK(a.at(0) == Approx(1.2));
-	CHECK(a.at(1) == Approx(-43.0));
-	CHECK(a.at(2) == Approx(-22.0));
-	CHECK(a.at(3) == Approx(11.0));
-	CHECK(a.at(4) == Approx(-65.4));
+	CHECK(a.at(1) == Approx(-2.4));
+	CHECK(a.at(2) == Approx(-3.6));
+	CHECK(a.at(3) == Approx(9.6));
+	CHECK(a.at(4) == Approx(-27.24));
 }
