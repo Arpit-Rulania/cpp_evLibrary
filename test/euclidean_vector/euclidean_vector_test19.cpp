@@ -14,5 +14,4 @@ TEST_CASE("Operation test 19") {
 	CHECK(b.at(4) == 22.7);
 	CHECK(b.dimensions() == 5);
 	CHECK(a.dimensions() == 0);
-	//CHECK(a.at(4) == 22.7);
 }

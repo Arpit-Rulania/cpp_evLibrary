@@ -64,6 +64,7 @@ namespace comp6771 {
 	euclidean_vector& euclidean_vector::operator=(euclidean_vector&& vecc) noexcept {
 		dimension_ = std::exchange(vecc.dimension_, 0u);
 		magnitude_ = std::exchange(vecc.magnitude_, nullptr);
+		return *this;
 	}
 
 	double& euclidean_vector::operator[](int i) noexcept {
@@ -140,10 +141,50 @@ namespace comp6771 {
 
 	// Member Functions:
 	double euclidean_vector::at(int i) const {
+		if (i < 0 || i >= static_cast<int>(dimension_)) {
+	        std::stringstream msg;
+	        msg << "Index" << i << "is not valid for this euclidean_vector object";
+	        throw euclidean_vector_error(msg.str());
+	    }
 		return magnitude_[static_cast<size_t>(i)];
 	}
 
-	int euclidean_vector::dimensions() const {
+	double& euclidean_vector::at(int i) {
+		if (i < 0 || i >= static_cast<int>(dimension_)) {
+	        std::stringstream msg;
+	        msg << "Index" << i << "is not valid for this euclidean_vector object";
+	        throw euclidean_vector_error(msg.str());
+	    }
+		return magnitude_[static_cast<size_t>(i)];
+	}
+
+	int euclidean_vector::dimensions() const noexcept{
 		return static_cast<int>(dimension_);
+	}
+
+	// Friends:
+	bool operator==(euclidean_vector const& a, euclidean_vector const& b) noexcept{
+		if (a.dimensions() != b.dimensions()) {
+			return false;
+		}
+		for (int i = 0; i < a.dimensions(); ++i) {
+			if (a[i] != b[i]) return false;
+		}
+		return true;
+	}
+
+	bool operator!=(euclidean_vector const& a, euclidean_vector const& b) noexcept {
+		return !(a == b);
+	}
+
+	euclidean_vector operator+(euclidean_vector const& a, euclidean_vector const& b) {
+		if (a.dimensions() != b.dimensions()) {
+	        std::stringstream msg;
+	        msg << "Dimensions of LHS(" << a.dimensions() << ") and RHS(" << b.dimensions() << ") do not match";
+	        throw euclidean_vector_error(msg.str());
+	    }
+		auto c = b;
+		std::transform(a.magnitude_.get(), a.magnitude_.get() + a.dimensions(), b.magnitude_.get(), c.magnitude_.get(), std::plus<double>());
+	    return c;
 	}
 }

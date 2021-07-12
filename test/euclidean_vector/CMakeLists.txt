@@ -1,10 +1,4 @@
 cxx_test(
-   TARGET euclidean_vector_test1
-   FILENAME "euclidean_vector_test1.cpp"
-   LINK euclidean_vector
-)
-
-cxx_test(
    TARGET euclidean_vector_test2
    FILENAME "euclidean_vector_test2.cpp"
    LINK euclidean_vector
@@ -109,5 +103,23 @@ cxx_test(
 cxx_test(
    TARGET euclidean_vector_test19
    FILENAME "euclidean_vector_test19.cpp"
+   LINK euclidean_vector
+)
+
+cxx_test(
+   TARGET euclidean_vector_test20
+   FILENAME "euclidean_vector_test20.cpp"
+   LINK euclidean_vector
+)
+
+cxx_test(
+   TARGET euclidean_vector_test21
+   FILENAME "euclidean_vector_test21.cpp"
+   LINK euclidean_vector
+)
+
+cxx_test(
+   TARGET euclidean_vector_test22
+   FILENAME "euclidean_vector_test22.cpp"
    LINK euclidean_vector
 )

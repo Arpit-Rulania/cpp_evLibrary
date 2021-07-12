@@ -40,7 +40,13 @@ namespace comp6771 {
 
 		// Member Functions:
 		double at(int i) const;
-		int dimensions() const;
+		double& at(int i);
+		int dimensions() const noexcept;
+
+		// Friends:
+		friend bool operator==(euclidean_vector const& a, euclidean_vector const& b) noexcept;
+		friend bool operator!=(euclidean_vector const& a, euclidean_vector const& b) noexcept;
+		friend euclidean_vector operator+(euclidean_vector const& a, euclidean_vector const& b);
 
 	private:
 		// ass2 spec requires we use double[]
