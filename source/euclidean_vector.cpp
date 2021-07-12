@@ -232,10 +232,9 @@ namespace comp6771 {
 	double euclidean_norm(euclidean_vector const& v) noexcept{
 		if (v.dimensions() == 0) return 0;
 	    auto d = 0.0;
-	    for (int i = 1; i < v.dimensions(); ++i) {
-			d += v[i];
+	    for (int i = 0; i < v.dimensions(); ++i) {
+			d += pow(v[i],2);
 	    }
-	    d += pow(v[v.dimensions()-1], 2);
 		return sqrt(d);
 	}
 
@@ -247,10 +246,7 @@ namespace comp6771 {
 		if (d == 0) {
 			throw euclidean_vector_error("euclidean_vector with zero euclidean normal does not have a unit vector");
 		}
-		auto uv = v;
-		for (int i = 0; i < v.dimensions(); ++i) {
-			uv[i] = v[i]/d;
-	    }
+		auto uv = v/d;
 		return uv;
 	}
 
