@@ -5,6 +5,7 @@
 #include <utility>
 
 TEST_CASE("Operation test 6") {
+	// Check if -= overload is working.
 	auto a = comp6771::euclidean_vector{1.0, -2.0, -3.0, 8.0, -22.7};
 	auto const b = comp6771::euclidean_vector{-1.2, 41.0, 19.0, -3.0, 42.7};
 	CHECK_NOTHROW(a -= b);

@@ -5,6 +5,7 @@
 #include <vector>
 
 TEST_CASE("constructor test 4") {
+	// Check if vector refrence constructor works.
     std::vector<double> v{10.0, 20.0, 30.0};
 	auto const a1 = comp6771::euclidean_vector(v.begin(), v.end());
 	CHECK(a1.at(0) == 10.0);

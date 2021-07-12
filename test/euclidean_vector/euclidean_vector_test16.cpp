@@ -5,6 +5,7 @@
 #include <utility>
 
 TEST_CASE("Operation test 8") {
+	// Check if /= overload is working.
 	auto a = comp6771::euclidean_vector{1.0, -2.0, -3.0, 8.0, -22.7};
 	CHECK_NOTHROW(a /= 1.2);
 	CHECK(a.at(0) == Approx(0.83333333));

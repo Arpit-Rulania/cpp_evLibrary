@@ -4,7 +4,7 @@
 #include <iostream>
 #include <utility>
 
-TEST_CASE("Operation test 3") {
+TEST_CASE("Operation test 12") {
     // This is to test if .at() works correctly and throws required exceptions.
 	auto a = comp6771::euclidean_vector{1.0, 2.0, 3.0, 8.0, 22.7};
 	CHECK(a.at(0) == 1.0);

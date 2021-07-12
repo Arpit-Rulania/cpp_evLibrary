@@ -4,6 +4,7 @@
 #include <iostream>
 
 TEST_CASE("constructor test 5") {
+	// Check if initialiser list constructor works.
 	auto const a1 = comp6771::euclidean_vector{1.0, 2.0, 3.0, 8.0, 22.7};
 	CHECK(a1.at(0) == 1.0);
 	CHECK(a1.at(1) == 2.0);

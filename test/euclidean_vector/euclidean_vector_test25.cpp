@@ -4,7 +4,7 @@
 #include <iostream>
 #include <utility>
 
-TEST_CASE("friend test 1") {
+TEST_CASE("friend test 7") {
     // This is to test if (b = a / constant) works correctly and throws appropriate exceptions.
 	auto a = comp6771::euclidean_vector{1.0, -2.0, -3.0, 8.0, -22.7};
 	auto b = a / 1.2;

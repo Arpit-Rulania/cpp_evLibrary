@@ -6,6 +6,7 @@
 #include <list>
 
 TEST_CASE("Operation test 10") {
+	// Check if static_cast<std::list<double>> overload is working.
 	auto a = comp6771::euclidean_vector{1.0, -2.0, -3.0, 8.0, -22.7};
 	auto const vf = static_cast<std::list<double>>(a);
 	bool found = (std::find(vf.begin(), vf.end(), (1.0)) != vf.end());
