@@ -8,6 +8,7 @@
 #include <functional>
 #include <span>
 #include <sstream>
+#include <list>
 
 namespace comp6771 {
 	// Constructors
@@ -122,9 +123,14 @@ namespace comp6771 {
 		return *this;
 	}
 
-	euclidean_vector::operator std::vector<double>() noexcept{
+	euclidean_vector::operator std::vector<double>() noexcept {
 		std::vector<double> vecc(magnitude_.get(), magnitude_.get() + dimension_);
 		return vecc;
+	}
+
+	euclidean_vector::operator std::list<double>() noexcept {
+		std::list<double> dList(magnitude_.get(), magnitude_.get() + dimension_);
+		return dList;
 	}
 
 	// Member Functions:

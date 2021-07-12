@@ -4,7 +4,7 @@
 #include <iostream>
 #include <utility>
 
-TEST_CASE("Operation test 1") {
+TEST_CASE("Operation test 7") {
 	auto a = comp6771::euclidean_vector{1.0, -2.0, -3.0, 8.0, -22.7};
 	CHECK_NOTHROW(a *= 1.2);
 	CHECK(a.at(0) == Approx(1.2));

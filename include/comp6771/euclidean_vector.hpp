@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <list>
 
 namespace comp6771 {
 	class euclidean_vector_error : public std::runtime_error {
@@ -34,6 +35,7 @@ namespace comp6771 {
         euclidean_vector& operator*=(double d);
         euclidean_vector& operator/=(double d);
         explicit operator std::vector<double>() noexcept;
+        explicit operator std::list<double>() noexcept;
 
 		// Member Functions:
 		double at(int i) const;
