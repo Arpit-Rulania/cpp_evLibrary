@@ -81,12 +81,8 @@ namespace comp6771 {
 	}
 
 	euclidean_vector euclidean_vector::operator-() noexcept {
-		/*
-		std::for_each(magnitude_.get(), magnitude_.get() + dimension_, [](double& val){
-																			val = val*(-1);
-																		});
-		*/
-		std::transform(magnitude_.get(), magnitude_.get() + dimension_, magnitude_.get(), std::negate<double>());
+		std::transform(magnitude_.get(), magnitude_.get() + dimension_,
+					   magnitude_.get(), std::negate<double>());
 		auto copy = *this;
 		return copy;
 	}
@@ -97,7 +93,8 @@ namespace comp6771 {
 	        msg << "Dimensions of LHS(" << dimension_ << ") and RHS(" << vecc.dimensions() << ") do not match";
 	        throw euclidean_vector_error(msg.str());
 	    }
-	    std::transform(magnitude_.get(), magnitude_.get() + dimension_, vecc.magnitude_.get(), magnitude_.get(), std::plus<double>());
+	    std::transform(magnitude_.get(), magnitude_.get() + dimension_,
+	                   vecc.magnitude_.get(), magnitude_.get(), std::plus<double>());
 	    return *this;
 	}
 
@@ -107,25 +104,21 @@ namespace comp6771 {
 	        msg << "Dimensions of LHS(" << dimension_ << ") and RHS(" << vecc.dimensions() << ") do not match";
 	        throw euclidean_vector_error(msg.str());
 	    }
-	    std::transform(magnitude_.get(), magnitude_.get() + dimension_, vecc.magnitude_.get(), magnitude_.get(), std::minus<double>());
+	    std::transform(magnitude_.get(), magnitude_.get() + dimension_,
+	                   vecc.magnitude_.get(), magnitude_.get(), std::minus<double>());
 	    return *this;
 	}
 
 	euclidean_vector& euclidean_vector::operator*=(double d) noexcept {
-		std::for_each(magnitude_.get(), magnitude_.get() + dimension_, [d](double& val){
-																			val *= d;
-																		});
-		/*std::transform(magnitude_.get(), magnitude_.get() + dimension_, magnitude_.get(), [d](double& val){
-																								return val*(d);
-																							});*/
+		std::for_each(magnitude_.get(), magnitude_.get() + dimension_,
+					  [d](double& val){ val *= d;});
 		return *this;
 	}
 
 	euclidean_vector& euclidean_vector::operator/=(double d) {
 		if (d == 0) throw euclidean_vector_error("Invalid vector division by 0");
-		std::for_each(magnitude_.get(), magnitude_.get() + dimension_, [d](double& val){
-																			val /= d;
-																		});
+		std::for_each(magnitude_.get(), magnitude_.get() + dimension_,
+					  [d](double& val){ val /= d;});
 		return *this;
 	}
 
@@ -184,7 +177,42 @@ namespace comp6771 {
 	        throw euclidean_vector_error(msg.str());
 	    }
 		auto c = b;
-		std::transform(a.magnitude_.get(), a.magnitude_.get() + a.dimensions(), b.magnitude_.get(), c.magnitude_.get(), std::plus<double>());
+		std::transform(a.magnitude_.get(), a.magnitude_.get() + a.dimensions(),
+					   b.magnitude_.get(), c.magnitude_.get(), std::plus<double>());
 	    return c;
+	}
+
+	euclidean_vector operator-(euclidean_vector const& a, euclidean_vector const& b) {
+		if (a.dimensions() != b.dimensions()) {
+	        std::stringstream msg;
+	        msg << "Dimensions of LHS(" << a.dimensions() << ") and RHS(" << b.dimensions() << ") do not match";
+	        throw euclidean_vector_error(msg.str());
+	    }
+		auto c = b;
+		std::transform(a.magnitude_.get(), a.magnitude_.get() + a.dimensions(),
+					   b.magnitude_.get(), c.magnitude_.get(), std::minus<double>());
+	    return c;
+	}
+
+	euclidean_vector operator*(euclidean_vector const& a, double d) noexcept {
+		auto b = a;
+		std::transform(a.magnitude_.get(), a.magnitude_.get() + a.dimensions(),
+					   b.magnitude_.get(), [d](double& val){ return val*(d);});
+		return b;
+	}
+
+	euclidean_vector operator*(double d, euclidean_vector const& a) noexcept {
+		auto b = a;
+		std::transform(a.magnitude_.get(), a.magnitude_.get() + a.dimensions(),
+					   b.magnitude_.get(), [d](double& val){ return val*(d);});
+		return b;
+	}
+
+	euclidean_vector operator/(euclidean_vector const& a, double d) {
+		if (d == 0) throw euclidean_vector_error("Invalid vector division by 0");
+		auto b = a;
+		std::transform(a.magnitude_.get(), a.magnitude_.get() + a.dimensions(),
+					   b.magnitude_.get(), [d](double& val){ return val/(d);});
+		return b;
 	}
 }

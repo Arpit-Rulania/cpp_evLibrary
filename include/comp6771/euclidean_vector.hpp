@@ -47,13 +47,14 @@ namespace comp6771 {
 		friend bool operator==(euclidean_vector const& a, euclidean_vector const& b) noexcept;
 		friend bool operator!=(euclidean_vector const& a, euclidean_vector const& b) noexcept;
 		friend euclidean_vector operator+(euclidean_vector const& a, euclidean_vector const& b);
+		friend euclidean_vector operator-(euclidean_vector const& a, euclidean_vector const& b);
+		friend euclidean_vector operator*(euclidean_vector const& a, double d) noexcept;
+		friend euclidean_vector operator*(double d, euclidean_vector const& a) noexcept;
+		friend euclidean_vector operator/(euclidean_vector const& a, double d);
 
 	private:
-		// ass2 spec requires we use double[]
-		// NOLINTNEXTLINE(modernize-avoid-c-arrays)
 		std::unique_ptr<double[]> magnitude_;
 		std::size_t dimension_;
-		// TODO more if needed
 	};
-} // namespace comp6771
+}
 #endif // COMP6771_EUCLIDEAN_VECTOR_HPP
