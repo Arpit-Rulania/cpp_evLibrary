@@ -25,7 +25,8 @@ namespace comp6771 {
 		euclidean_vector(euclidean_vector const& vecc) noexcept;
 		euclidean_vector(euclidean_vector && vecc) noexcept;
 		// Operations:
-		euclidean_vector& operator=(euclidean_vector const& vecc);
+		euclidean_vector& operator=(euclidean_vector const& vecc) noexcept;
+		euclidean_vector& operator=(euclidean_vector&& vecc) noexcept;
 		double& operator[](int i) noexcept;
         double operator[](int i) const noexcept;
         euclidean_vector operator+() noexcept;

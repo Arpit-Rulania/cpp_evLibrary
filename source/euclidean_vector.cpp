@@ -55,10 +55,15 @@ namespace comp6771 {
 	}
 
 	// Operations
-	euclidean_vector& euclidean_vector::operator=(euclidean_vector const& vecc) {
-		euclidean_vector copy = vecc;
-		std::swap(copy, *this);
+	euclidean_vector& euclidean_vector::operator=(euclidean_vector const& vecc) noexcept {
+		dimension_ = static_cast<size_t>(vecc.dimensions());
+		std::copy(vecc.magnitude_.get(), vecc.magnitude_.get() + dimension_, magnitude_.get());
 		return *this;
+	}
+
+	euclidean_vector& euclidean_vector::operator=(euclidean_vector&& vecc) noexcept {
+		dimension_ = std::exchange(vecc.dimension_, 0u);
+		magnitude_ = std::exchange(vecc.magnitude_, nullptr);
 	}
 
 	double& euclidean_vector::operator[](int i) noexcept {
