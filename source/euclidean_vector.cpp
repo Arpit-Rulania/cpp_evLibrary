@@ -9,6 +9,7 @@
 #include <span>
 #include <sstream>
 #include <list>
+#include <cmath>
 
 namespace comp6771 {
 	// Constructors
@@ -226,5 +227,15 @@ namespace comp6771 {
 	    }
 	    ostr << "]";
 	    return ostr;
+	}
+
+	double euclidean_norm(euclidean_vector const& v) {
+		if (v.dimensions() == 0) return 0;
+	    auto d = 0.0;
+	    for (int i = 1; i < v.dimensions(); ++i) {
+			d += v[i];
+	    }
+	    d += pow(v[v.dimensions()-1], 2);
+		return sqrt(d);
 	}
 }

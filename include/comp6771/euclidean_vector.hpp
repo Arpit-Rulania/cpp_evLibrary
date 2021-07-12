@@ -58,5 +58,7 @@ namespace comp6771 {
 		std::unique_ptr<double[]> magnitude_;
 		std::size_t dimension_;
 	};
+
+	double euclidean_norm(euclidean_vector const& v);
 }
 #endif // COMP6771_EUCLIDEAN_VECTOR_HPP
