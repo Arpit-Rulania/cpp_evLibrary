@@ -33,6 +33,7 @@ namespace comp6771 {
         euclidean_vector& operator-=(euclidean_vector const& vecc);
         euclidean_vector& operator*=(double d);
         euclidean_vector& operator/=(double d);
+        explicit operator std::vector<double>() noexcept;
 
 		// Member Functions:
 		double at(int i) const;

@@ -122,6 +122,11 @@ namespace comp6771 {
 		return *this;
 	}
 
+	euclidean_vector::operator std::vector<double>() noexcept{
+		std::vector<double> vecc(magnitude_.get(), magnitude_.get() + dimension_);
+		return vecc;
+	}
+
 	// Member Functions:
 	double euclidean_vector::at(int i) const {
 		return magnitude_[static_cast<size_t>(i)];
