@@ -229,7 +229,7 @@ namespace comp6771 {
 	    return ostr;
 	}
 
-	double euclidean_norm(euclidean_vector const& v) {
+	double euclidean_norm(euclidean_vector const& v) noexcept{
 		if (v.dimensions() == 0) return 0;
 	    auto d = 0.0;
 	    for (int i = 1; i < v.dimensions(); ++i) {
@@ -237,5 +237,14 @@ namespace comp6771 {
 	    }
 	    d += pow(v[v.dimensions()-1], 2);
 		return sqrt(d);
+	}
+
+	euclidean_vector unit(euclidean_vector const& v) {
+		auto uv = v;
+		auto d = euclidean_norm(v);
+		std::transform(uv.magnitude_.get(), uv.magnitude_.get() + uv.dimensions(),
+					   v.magnitude_.get(), uv.magnitude_.get(),
+					   [d](double& val){ return val/(d);});
+		return uv;
 	}
 }
