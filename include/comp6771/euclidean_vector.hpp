@@ -53,7 +53,7 @@ namespace comp6771 {
 		friend euclidean_vector operator*(double d, euclidean_vector const& a) noexcept;
 		friend euclidean_vector operator/(euclidean_vector const& a, double d);
 		friend std::ostream& operator<<(std::ostream& ostr, euclidean_vector const& a) noexcept;
-		friend euclidean_vector unit(euclidean_vector const& v);
+		euclidean_vector unit(euclidean_vector const& v);
 
 	private:
 		std::unique_ptr<double[]> magnitude_;
@@ -61,5 +61,6 @@ namespace comp6771 {
 	};
 
 	double euclidean_norm(euclidean_vector const& v) noexcept;
+	euclidean_vector unit(euclidean_vector const& v);
 }
 #endif // COMP6771_EUCLIDEAN_VECTOR_HPP

@@ -240,11 +240,17 @@ namespace comp6771 {
 	}
 
 	euclidean_vector unit(euclidean_vector const& v) {
-		auto uv = v;
+		if (v.dimensions() == 0) {
+			throw euclidean_vector_error("euclidean_vector with no dimensions does not have a unit vector");
+		}
 		auto d = euclidean_norm(v);
-		std::transform(uv.magnitude_.get(), uv.magnitude_.get() + uv.dimensions(),
-					   v.magnitude_.get(), uv.magnitude_.get(),
-					   [d](double& val){ return val/(d);});
+		if (d == 0) {
+			throw euclidean_vector_error("euclidean_vector with zero euclidean normal does not have a unit vector");
+		}
+		auto uv = v;
+		for (int i = 0; i < v.dimensions(); ++i) {
+			uv[i] = v[i]/d;
+	    }
 		return uv;
 	}
 }
