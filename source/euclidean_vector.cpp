@@ -253,4 +253,17 @@ namespace comp6771 {
 	    }
 		return uv;
 	}
+
+	double dot(euclidean_vector const& x, euclidean_vector const& y) {
+		if (x.dimensions() != y.dimensions()) {
+	        std::stringstream msg;
+	        msg << "Dimensions of LHS(" << x.dimensions() << ") and RHS(" << y.dimensions() << ") do not match";
+	        throw euclidean_vector_error(msg.str());
+	    }
+	    auto res = 0.0;
+	    for (int i = 0; i < x.dimensions(); ++i) {
+			res	+= (x[i] * y[i]);
+	    }
+	    return res;
+	}
 }

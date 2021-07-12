@@ -62,5 +62,6 @@ namespace comp6771 {
 
 	double euclidean_norm(euclidean_vector const& v) noexcept;
 	euclidean_vector unit(euclidean_vector const& v);
+	double dot(euclidean_vector const& x, euclidean_vector const& y);
 }
 #endif // COMP6771_EUCLIDEAN_VECTOR_HPP
